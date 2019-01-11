@@ -1,1 +1,1 @@
-cd ../app/ && node index.js && cd -
+cd ../ && node index.js && cd -
