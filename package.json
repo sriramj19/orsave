@@ -1,0 +1,11 @@
+{
+  "name": "orsave",
+  "version": "0.0.1",
+  "description": "savings app",
+  "main": "index.js",
+  "scripts": {
+    "test": "cd app && node index.js"
+  },
+  "author": "sriram.j",
+  "license": "ISC"
+}
