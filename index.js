@@ -12,7 +12,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.listen(env.PORT, () => {
+app.listen(process.env.port || env.PORT, () => {
     console.log('Server is up and running on port numner ' + env.PORT);
 });
 
