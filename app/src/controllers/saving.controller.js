@@ -40,7 +40,7 @@ module.exports = {
                     }
                     let savingResponse = {
                         amount: response.amount,
-                        totalSavings: data[0].total,
+                        total: data[0].total,
                         userId: response.userId,
                         id: response._id
                     };
@@ -51,27 +51,25 @@ module.exports = {
     },
 
     getSavings: (req, res) => {
-        if (req.body && req.body.depositAmount) {
-            let _user = ObjectId('5c376ae1cd32c41292e5ab0d');
-            Saving.aggregate([
-                {
-                    $match: {
-                        userId: _user
-                    }
-                },
-                {
-                    $group: {
-                        _id: null, total: { $sum: '$amount' }, userId: { $first: '$userId' }
-                    }
+        let _user = ObjectId('5c376ae1cd32c41292e5ab0d');
+        Saving.aggregate([
+            {
+                $match: {
+                    userId: _user
                 }
-            ]).exec((err, data) => {
-                if (err) {
-                    console.log('Error while fetching total savings', err);
-                    return res.status(500).send(err);
+            },
+            {
+                $group: {
+                    _id: null, total: { $sum: '$amount' }, userId: { $first: '$userId' }
                 }
+            }
+        ]).exec((err, data) => {
+            if (err) {
+                console.log('Error while fetching total savings', err);
+                return res.status(500).send(err);
+            }
 
-                return res.json(data[0]);
-            })
-        }
+            return res.json(data[0]);
+        })
     }
 };
