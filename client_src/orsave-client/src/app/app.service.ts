@@ -8,10 +8,10 @@ export class AppService {
     }
 
     public addDeposit(depositAmount: number) {
-        return this.http.post('/savings/deposit', { depositAmount: depositAmount });
+        return this.http.post('/api/savings/deposit', { depositAmount: depositAmount });
     }
 
     public getSavings() {
-        return this.http.get('/savings/total');
+        return this.http.get('/api/savings/total');
     }
 }

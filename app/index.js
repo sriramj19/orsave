@@ -3,6 +3,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const env = require('./src/environments/environment');
 const routes = require('./routes');
+const path = require('path');
+
 
 // initialize our express app
 const app = express();
@@ -14,7 +16,26 @@ app.listen(env.PORT, () => {
     console.log('Server is up and running on port numner ' + env.PORT);
 });
 
-app.use('/', routes);
+const allowedExt = [
+    '.js',
+    '.ico',
+    '.css',
+    '.png',
+    '.jpg',
+    '.woff2',
+    '.woff',
+    '.ttf',
+    '.svg',
+];
+
+app.use('/api', routes);
+app.get('*', (req, res) => {
+    if (allowedExt.filter(ext => req.url.indexOf(ext) > 0).length > 0) {
+        res.sendFile(path.resolve(`dist/orsave/${req.url}`));
+    } else {
+        res.sendFile(path.resolve('dist/orsave/index.html'));
+    }
+});
 
 // Set up mongoose connection
 const mongoose = require('mongoose');
