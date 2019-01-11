@@ -1,0 +1,21 @@
+{
+  "name": "orsave-web",
+  "version": "0.0.1",
+  "description": "orsave web services",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "keywords": [
+    "orsave",
+    "save"
+  ],
+  "author": "sriram.j",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^3.0.2",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "mongoose": "^5.4.0"
+  }
+}
