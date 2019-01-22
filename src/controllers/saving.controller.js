@@ -8,7 +8,7 @@ module.exports = {
     depositAmount: (req, res) => {
         if (req.body && req.body.depositAmount) {
             let _createdDate = new Date();
-            let _user = ObjectId('5c376ae1cd32c41292e5ab0d');
+            let _user = ObjectId('5c467b230b75aa195697cbbf');
             let saving = new Saving(
                 {
                     userId: _user,
@@ -69,7 +69,7 @@ module.exports = {
                 return res.status(500).send(err);
             }
 
-            return res.json(data[0]);
+            return res.json(data[0] || { total: 0, userId: _user });
         })
     }
 };

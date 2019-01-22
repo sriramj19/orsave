@@ -1,5 +1,5 @@
 module.exports = {
     PORT: 7337,
-    mongoDBUrl: 'mongodb://localhost:27017/orsave',
+    mongoDBUrl: 'mongodb://ds151814.mlab.com:51814/orsave',
     saltRounds: 10
 }
