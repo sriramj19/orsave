@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const env = require('./src/environments/environment');
 const routes = require('./routes');
 const path = require('path');
-
+const atob = require('atob');
 
 // initialize our express app
 const app = express();
@@ -39,7 +39,7 @@ app.get('*', (req, res) => {
 
 // Set up mongoose connection
 const mongoose = require('mongoose');
-mongoose.connect(env.mongoDBUrl, { useNewUrlParser: true, user: 'sriram.j', pass: 'gft@123' });
+mongoose.connect(env.mongoDBUrl, { useNewUrlParser: true, user: env.user, pass: atob(env.pass) });
 mongoose.set('useCreateIndex', true);
 mongoose.Promise = global.Promise;
 let db = mongoose.connection;
