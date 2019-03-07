@@ -39,7 +39,8 @@ app.get('*', (req, res) => {
 
 // Set up mongoose connection
 const mongoose = require('mongoose');
-mongoose.connect(env.mongoDBUrl, { useNewUrlParser: true, user: env.user, pass: atob(env.pass) });
+mongoose.connect(env.prodMongoDBUrl, { useNewUrlParser: true, user: env.user, pass: atob(env.pass) }); // Prod
+// mongoose.connect(env.devMongoDBUrl, { useNewUrlParser: true}); //Dev
 mongoose.set('useCreateIndex', true);
 mongoose.Promise = global.Promise;
 let db = mongoose.connection;

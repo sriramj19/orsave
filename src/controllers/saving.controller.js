@@ -1,14 +1,13 @@
 const Saving = require('../models/saving.model');
 const bcrypt = require('bcrypt');
 const env = require('../environments/environment');
-ObjectId = require('mongodb').ObjectID;
 
 module.exports = {
 
     depositAmount: (req, res) => {
         if (req.body && req.body.depositAmount) {
             let _createdDate = new Date();
-            let _user = ObjectId('5c467b230b75aa195697cbbf');
+            let _user = env.defaultUserId;
             let saving = new Saving(
                 {
                     userId: _user,
@@ -51,7 +50,7 @@ module.exports = {
     },
 
     getSavings: (req, res) => {
-        let _user = ObjectId('5c467b230b75aa195697cbbf');
+        let _user = env.defaultUserId;
         Saving.aggregate([
             {
                 $match: {
