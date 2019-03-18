@@ -15,6 +15,10 @@ let SavingSchema = new Schema({
     createdDate: {
         type: Date,
         required: true
+    },
+    actualDate: {
+        type: Date,
+        required: true
     }
 });
 

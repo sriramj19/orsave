@@ -4,18 +4,13 @@ const env = require('../environments/environment');
 module.exports = {
     getRandomSuggestion: (req, res) => {
         let _user = env.defaultUserId;
-        Saving.find({ userId: _user }, { amount: 1 }).exec((err, data) => {
+        Saving.find({ userId: _user }, { amount: 1, createdDate: 1 }).exec((err, data) => {
             if (err) {
                 console.log('Error while fetching suggestions for savings', err);
                 return res.status(500).send(err);
             }
 
-            const range = (start, end) => {
-                const length = end - start + 1;
-                return Array.from({ length }, (_, i) => start + i);
-            };
-
-            let _universalSet = range(1, 365);
+            let _universalSet = getRange(1, 365);
 
             let _alreadyExistingAmts = data.map(saving => saving.amount);
 
@@ -26,4 +21,9 @@ module.exports = {
             return res.json(rand);
         })
     }
+};
+
+function getRange(start, end) {
+    const length = end - start + 1;
+    return Array.from({ length }, (_, i) => start + i);
 };
