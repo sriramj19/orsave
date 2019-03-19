@@ -11,7 +11,8 @@ module.exports = {
                 {
                     userId: _user,
                     amount: req.body.depositAmount,
-                    createdDate: _createdDate
+                    createdDate: _createdDate,
+                    actualDate: _createdDate
                 }
             );
             saving.save((err, response) => {
